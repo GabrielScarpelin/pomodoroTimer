@@ -1,0 +1,253 @@
+@font-face {
+    font-family: 'Indy Pimp';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Indy Pimp'), url('https://fonts.cdnfonts.com/s/1838/indiepimptbs.woff') format('woff');
+}
+@font-face {
+    font-family: 'Indy Pimp';
+    font-style: italic;
+    font-weight: 400;
+    src: local('Indy Pimp'), url('https://fonts.cdnfonts.com/s/1838/indiepimptbs_ital.woff') format('woff');
+}
+@font-face {
+    font-family: 'indy pimp';
+    font-style: normal;
+    font-weight: 700;
+    src: local('indy pimp'), url('https://fonts.cdnfonts.com/s/1838/indiepimptbs_bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'IT Encore Sans Book'; /*font-family: 'IT Encore Sans Book', sans-serif;
+                                        font-family: 'IT Encore Sans Light', sans-serif;
+                                        font-family: 'IT Encore Sans Black', sans-serif;
+                                        font-family: 'IT Encore Sans Bold', sans-serif;*/
+    font-style: normal;
+    font-weight: 400;
+    src: local('IT Encore Sans Book'), url('https://fonts.cdnfonts.com/s/19668/IT Encore Sans Book.woff') format('woff');
+}
+@font-face {
+    font-family: 'IT Encore Sans Light';
+    font-style: normal;
+    font-weight: 400;
+    src: local('IT Encore Sans Light'), url('https://fonts.cdnfonts.com/s/19668/IT Encore Sans Light.woff') format('woff');
+}
+@font-face {
+    font-family: 'IT Encore Sans Black';
+    font-style: normal;
+    font-weight: 400;
+    src: local('IT Encore Sans Black'), url('https://fonts.cdnfonts.com/s/19668/IT Encore Sans Black.woff') format('woff');
+}
+@font-face {
+    font-family: 'IT Encore Sans Bold';
+    font-style: normal;
+    font-weight: 400;
+    src: local('IT Encore Sans Bold'), url('https://fonts.cdnfonts.com/s/19668/IT Encore Sans Bold.woff') format('woff');
+}
+@font-face {
+    font-family: 'VAG Primer'; /*font-family: 'VAG Primer', sans-serif; */
+    font-style: normal;
+    font-weight: 700;
+    src: local('VAG Primer'), url('https://fonts.cdnfonts.com/s/75534/vag_primer_by_liam_butler_deqszdu.woff') format('woff');
+}
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(30,33,64);
+}
+.container-pomodoro{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.btns{
+    background-color: rgb(21,25,50);
+    border-radius: 25px;
+}
+.radio{
+    display: none;
+}
+.labelRadio{
+    display: inline-block;
+    width: 100px;
+    height: 40px;
+    margin: 5px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 14px;
+}
+.themeColor-active{
+    background-color: rgb(247,113,113);
+    color: rgb(255, 255, 255);
+}
+#firstCircle{
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45vh;
+    height: 45vh;
+    border-radius: 100%;
+    background-color: rgb(19,23,50);
+}
+#centralInfo{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+#centralInfo h1{
+    font-size: 80px;
+    color: rgb(238,240,250);
+}
+.btnPauseResume{
+    margin-left: 13px;
+    letter-spacing: 12px;
+    background-color: transparent;
+    border: none;
+    color: rgb(238,240,250);
+    font-size: 20px;
+    cursor: pointer;
+}
+.hidden{
+    display: none;
+}
+#configBtn{
+    margin-top: 100px;
+    width: 2vw;
+}
+.pomo-config{
+    display: none;
+    grid-template-rows: repeat(4, 1fr);
+    width: 25vw;
+    height: 50vh;
+    border-radius: 15px;
+    background-color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.enter-animation{
+    animation-name: configEnter;
+    display: grid;
+    animation-duration: 0.4s;
+}
+#titleSettings{
+    margin-left: 30px;
+}
+#settings{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(82, 82, 82);
+}
+#closeIcon{
+    width: 25px;
+    margin-right: 30px;
+    margin-bottom: 2px;
+}
+#time{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    padding: 20px;
+    flex-direction: column;
+    border-bottom: 1px solid rgb(82, 82, 82);
+}
+#titleTime{
+    margin-top: 0;
+    grid-column: span 3;
+}
+#time p{
+    font-size: 12px;
+    margin: 0;
+}
+#time input{
+    width: 90%;
+    height: 3vh;
+    background-color: rgb(238,240,250);
+    border: none;
+    border-radius: 7px;
+}
+.numberInput:focus{
+    outline: none;
+}
+.numberInput{
+    padding-left: 5px;
+}
+#colorBox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+#font{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid rgb(82, 82, 82);
+}
+.radioColor{
+    display: none;
+}
+.estilizationRadio{
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    display: flex;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.btnsRadio-container{
+    display: flex;
+}
+#color1{
+    background-color: rgb(247,113,113);
+}
+#color2{
+    background-color: rgb(112,241,249);
+}
+#color3{
+    background-color: #d781f9;
+}
+.color-on{
+    background-color: rgb(21,23,49);
+}
+.color-off{
+    background-color: rgb(238,240,250);
+}
+#applyConfigs{
+    justify-self: center;
+    margin-bottom: 5px;
+    width: 5vw;
+    height: 3vh;
+    border: none;
+    border-radius: 15px;
+}
+.fontSelect1{
+    font-family: 'Indy Pimp', sans-serif;
+}
+.fontSelect2{
+    font-family: 'IT Encore Sans Book', sans-serif;
+}
+.fontSelect3{
+    font-family: 'VAG Primer', sans-serif;
+}
+.circleAnims{
+    transition: 2s;    
+}
+@keyframes configEnter {
+    0%{
+        transform: translate(-50%, -50%);
+        transform: translateX(-100vw);
+    }
+    100%{
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+    }
+}

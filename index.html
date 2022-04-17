@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro APP</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="js/script.js"></script>
+</head>
+<body class="fontSelect1">
+    <div class="container-pomodoro">
+        <h1 style="color: aliceblue;">pomodoro</h1>
+        <div class="btns">
+            <input type="radio" name="radio1" id="btn1" class="radio" checked>
+            <input type="radio" name="radio1" id="btn2" class="radio">
+            <input type="radio" name="radio1" id="btn3" class="radio">
+            <label for="btn1" class="labelRadio themeColor-active" data-btn="1"><p>pomodoro</p></label>
+            <label for="btn2" class="labelRadio" data-btn="2"><p>short break</p></label>
+            <label for="btn3" class="labelRadio" data-btn="3"><p>long break</p></label>
+        </div>
+        <div id="firstCircle">
+            <svg width="40vh" height="40vh" style="transform:rotate(-90deg);">
+                <circle id="circle" fill="none" stroke="rgb(247,113,113)" stroke-width="12" stroke-dasharray="1068.1px" stroke-dashoffset="0" stroke-linecap="round" cx="20vh" cy="20vh" r="170">
+            </svg>
+            <div id="centralInfo">
+                <h1 class="fontSelect1" id="timing">25:00</h1>
+                <div>
+                    <button id="btnStart" class="btnPauseResume fontSelect1">START</button>
+                    <button id="btnPause" class="btnPauseResume fontSelect1 hidden">PAUSE</button>
+                </div>
+            </div>
+        </div>
+        <img src="img/configuracoes.svg" alt="" id="configBtn">
+    </div>
+    <div class="pomo-config"> <!--TELA DE CONFIGURAÇÕES-->
+        <div id="settings">
+            <h1 id="titleSettings">Settings</h1>
+            <img src="https://openclipart.org/image/800px/311612" alt="" id="closeIcon">
+        </div>
+        <div id="time">
+            <h3 id="titleTime">TIME (MINUTES)</h3>
+            <div>
+                <p>pomodoro</p>
+                <input type="number" name="" id="" class="numberInput">
+            </div>
+            <div>
+                <p>short break</p>
+                <input type="number" name="" id="" class="numberInput">
+            </div>
+            <div>
+                <p>long break</p>
+                <input type="number" name="" id="" class="numberInput">
+            </div>
+        </div>
+        <div id="font">
+            <h3>FONT</h3>
+            <div class="btnsRadio-container">
+                <input type="radio" name="fontChange" id="" class="radioColor">
+                <input type="radio" name="fontChange" id="" class="radioColor">
+                <input type="radio" name="fontChange" id="" class="radioColor">
+                <label for="radioOption1" class="estilizationRadio color-on" id="fonte1"><img src="img/fonte1-on.png" alt="" style="width: 12px;"></label>
+                <label for="radioOption2"class="estilizationRadio color-off"id="fonte2"><img src="img/fonte2.png" alt="" style="width: 12px;"></label>
+                <label for="radioOption3"class="estilizationRadio color-off" id="fonte3"><img src="img/fonte3.png" alt="" style="width: 12px;"></label>
+            </div>
+        </div>
+        <div id="colorBox">
+            <h3>COLOR</h3>
+            <div class="btnsRadio-container">
+                <input type="radio" name="colorChange" id="radioOption1" class="radioColor">
+                <input type="radio" name="colorChange" id="radioOption2" class="radioColor">
+                <input type="radio" name="colorChange" id="radioOption3" class="radioColor">
+                <label for="radioOption1" class="estilizationRadio" id="color1"><img src="https://cdn-icons-png.flaticon.com/128/2716/2716283.png" alt="" style="width: 12px;"></label>
+                <label for="radioOption2"class="estilizationRadio"id="color2"><img src="https://cdn-icons-png.flaticon.com/128/2716/2716283.png" alt="" style="width: 12px;"></label>
+                <label for="radioOption3"class="estilizationRadio" id="color3"><img src="https://cdn-icons-png.flaticon.com/128/2716/2716283.png" alt="" style="width: 12px;"></label>
+            </div>
+        </div>
+        <button id="applyConfigs" class="themeColor-active fontSelect1">Apply</button>
+    </div>
+</body>
+</html>
