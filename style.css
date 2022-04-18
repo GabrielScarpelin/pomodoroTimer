@@ -53,6 +53,7 @@ body{
     margin: 0;
     padding: 0;
     background-color: rgb(30,33,64);
+    cursor: url('img/3x4Foto.png'), auto;
 }
 .container-pomodoro{
     display: flex;
@@ -75,9 +76,9 @@ body{
     border-radius: 20px;
     text-align: center;
     font-size: 14px;
+    transition: 1s;
 }
-.themeColor-active{
-    background-color: rgb(247,113,113);
+.activeOption{
     color: rgb(255, 255, 255);
 }
 #firstCircle{
@@ -114,22 +115,29 @@ body{
 }
 #configBtn{
     margin-top: 100px;
-    width: 2vw;
+    width: 40px;
+    cursor: pointer;
 }
 .pomo-config{
     display: none;
     grid-template-rows: repeat(4, 1fr);
-    width: 25vw;
-    height: 50vh;
+    width: 23vw;
+    height: 52vh;
     border-radius: 15px;
     background-color: white;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    transition: 1s;
 }
 .enter-animation{
     animation-name: configEnter;
+    display: grid;
+    animation-duration: 0.4s;
+}
+.goout-animation{
+    animation-name: configOut;
     display: grid;
     animation-duration: 0.4s;
 }
@@ -146,6 +154,7 @@ body{
     width: 25px;
     margin-right: 30px;
     margin-bottom: 2px;
+    cursor: pointer;
 }
 #time{
     display: grid;
@@ -189,7 +198,7 @@ body{
     padding: 20px;
     border-bottom: 1px solid rgb(82, 82, 82);
 }
-.radioColor{
+.radioBtnsMenus{
     display: none;
 }
 .estilizationRadio{
@@ -246,6 +255,17 @@ body{
         transform: translateX(-100vw);
     }
     100%{
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+    }
+}
+@keyframes configOut {
+    100%{
+        transform: translate(-50%, -50%);
+        transform: translateX(-100vw);
+    }
+    0%{
         transform: translate(-50%, -50%);
         top: 50%;
         left: 50%;

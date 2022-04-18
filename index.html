@@ -15,7 +15,7 @@
             <input type="radio" name="radio1" id="btn1" class="radio" checked>
             <input type="radio" name="radio1" id="btn2" class="radio">
             <input type="radio" name="radio1" id="btn3" class="radio">
-            <label for="btn1" class="labelRadio themeColor-active" data-btn="1"><p>pomodoro</p></label>
+            <label for="btn1" class="labelRadio activeOption" style="background-color: rgb(247,113,113);" data-btn="1"><p>pomodoro</p></label>
             <label for="btn2" class="labelRadio" data-btn="2"><p>short break</p></label>
             <label for="btn3" class="labelRadio" data-btn="3"><p>long break</p></label>
         </div>
@@ -33,7 +33,7 @@
         </div>
         <img src="img/configuracoes.svg" alt="" id="configBtn">
     </div>
-    <div class="pomo-config"> <!--TELA DE CONFIGURAÇÕES-->
+    <div class="pomo-config" id="config"> <!--TELA DE CONFIGURAÇÕES-->
         <div id="settings">
             <h1 id="titleSettings">Settings</h1>
             <img src="https://openclipart.org/image/800px/311612" alt="" id="closeIcon">
@@ -42,40 +42,40 @@
             <h3 id="titleTime">TIME (MINUTES)</h3>
             <div>
                 <p>pomodoro</p>
-                <input type="number" name="" id="" class="numberInput">
+                <input type="number" name="" id="pomodoroInput" class="numberInput fontSelect1">
             </div>
             <div>
                 <p>short break</p>
-                <input type="number" name="" id="" class="numberInput">
+                <input type="number" name="" id="shortBrInput" class="numberInput fontSelect1">
             </div>
             <div>
                 <p>long break</p>
-                <input type="number" name="" id="" class="numberInput">
+                <input type="number" name="" id="longBrInput" class="numberInput fontSelect1">
             </div>
         </div>
         <div id="font">
             <h3>FONT</h3>
             <div class="btnsRadio-container">
-                <input type="radio" name="fontChange" id="" class="radioColor">
-                <input type="radio" name="fontChange" id="" class="radioColor">
-                <input type="radio" name="fontChange" id="" class="radioColor">
-                <label for="radioOption1" class="estilizationRadio color-on" id="fonte1"><img src="img/fonte1-on.png" alt="" style="width: 12px;"></label>
-                <label for="radioOption2"class="estilizationRadio color-off"id="fonte2"><img src="img/fonte2.png" alt="" style="width: 12px;"></label>
-                <label for="radioOption3"class="estilizationRadio color-off" id="fonte3"><img src="img/fonte3.png" alt="" style="width: 12px;"></label>
+                <input type="radio" name="fontChange" id="fontOption1" class="radioBtnsMenus">
+                <input type="radio" name="fontChange" id="fontOption2" class="radioBtnsMenus">
+                <input type="radio" name="fontChange" id="fontOption3" class="radioBtnsMenus">
+                <label for="fontOption1" class="estilizationRadio color-on" id="fonte1"><img src="img/fonte1-on.png" alt="" id="imgFont1" style= "width: 12px;"></label>
+                <label for="fontOption2"class="estilizationRadio color-off"id="fonte2"><img src="img/fonte2.png" alt="" id="imgFont2" style="width: 12px;"></label>
+                <label for="fontOption3"class="estilizationRadio color-off" id="fonte3"><img src="img/fonte3.png" alt="" id="imgFont3" style="width: 12px;"></label>
             </div>
         </div>
         <div id="colorBox">
             <h3>COLOR</h3>
             <div class="btnsRadio-container">
-                <input type="radio" name="colorChange" id="radioOption1" class="radioColor">
-                <input type="radio" name="colorChange" id="radioOption2" class="radioColor">
-                <input type="radio" name="colorChange" id="radioOption3" class="radioColor">
-                <label for="radioOption1" class="estilizationRadio" id="color1"><img src="https://cdn-icons-png.flaticon.com/128/2716/2716283.png" alt="" style="width: 12px;"></label>
-                <label for="radioOption2"class="estilizationRadio"id="color2"><img src="https://cdn-icons-png.flaticon.com/128/2716/2716283.png" alt="" style="width: 12px;"></label>
-                <label for="radioOption3"class="estilizationRadio" id="color3"><img src="https://cdn-icons-png.flaticon.com/128/2716/2716283.png" alt="" style="width: 12px;"></label>
+                <input type="radio" name="colorChange" id="colorOption1" class="radioColor radioBtnsMenus" checked>
+                <input type="radio" name="colorChange" id="colorOption2" class="radioColor radioBtnsMenus">
+                <input type="radio" name="colorChange" id="colorOption3" class="radioColor radioBtnsMenus">
+                <label for="colorOption1" class="estilizationRadio" id="color1"><img src="https://cdn-icons-png.flaticon.com/128/2716/2716283.png" id="imgColor1" alt="" style="width: 12px;"></label>
+                <label for="colorOption2"class="estilizationRadio"id="color2"><img src="https://cdn-icons-png.flaticon.com/128/2716/2716283.png" alt="" class="hidden" id="imgColor2" style="width: 12px;"></label>
+                <label for="colorOption3"class="estilizationRadio" id="color3"><img src="https://cdn-icons-png.flaticon.com/128/2716/2716283.png" alt="" class="hidden" id="imgColor3" style="width: 12px;"></label>
             </div>
         </div>
-        <button id="applyConfigs" class="themeColor-active fontSelect1">Apply</button>
+        <button id="applyConfigs" class="fontSelect1" style="background-color: rgb(247,113,113);">Apply</button>
     </div>
 </body>
 </html>

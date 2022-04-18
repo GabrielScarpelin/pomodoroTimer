@@ -10,10 +10,15 @@ const timers = {
     atualTimer: {
         minutos:0,
         segundos:0
-    }
+    },
+    shortBreakTimes: 4,
+    shortBreakControl: 0
 }
 const properties = {
-    strokeDashArray: 0
+    strokeDashArray: 0,
+    colorTheme: 'rgb(247,113,113)'
+}
+const radioButtons = {
 }
 window.onload = ()=>{
     let atualBtnChecked = 0;
@@ -30,56 +35,131 @@ window.onload = ()=>{
     setInterval(()=>{
         circle.classList.add('circleAnims')
     },1000)
-    btns = document.getElementsByName('radio1')
+    const btns = document.getElementsByName('radio1')
+    radioButtons.optionBtn = btns
     btns.forEach((btn)=>{
         btn.addEventListener('click', (btn)=>{
-            btns.forEach((btnAtual, indice) =>{
+            if (intervaloCheck == false){
+                btns.forEach((btnAtual, indice) => {
+                    if (btnAtual.checked) {
+                        if (btnAtual != atualBtnChecked) {
+                            atualBtnChecked = btnAtual
+                            document.querySelector(`[data-btn="${indice + 1}"]`).style = `background-color:${properties.colorTheme};`
+                            document.querySelector(`[data-btn="${indice + 1}"]`).classList.add('activeOption')
+                        }
+                    }
+                    else {
+                        document.querySelector(`[data-btn="${indice + 1}"]`).style = ''
+                        document.querySelector(`[data-btn="${indice + 1}"]`).classList.remove('activeOption')
+                    }
+                })
+            }
+        })
+    })
+    let atualFontBtn
+    const fontsRadio = document.getElementsByName('fontChange')
+    radioButtons.fontsBtn = fontsRadio
+    fontsRadio.forEach((btnFonts)=>{
+        btnFonts.addEventListener('click', ()=>{
+            fontsRadio.forEach((btnAtual, indice) =>{
                 if (btnAtual.checked){
-                    if (btnAtual != atualBtnChecked){
-                        console.log('colocando no indice ',indice+1)
-                        atualBtnChecked = btnAtual
-                        document.querySelector(`[data-btn="${indice+1}"]`).classList.add('themeColor-active')
+                    if (btnAtual != atualFontBtn){
+                        atualFontBtn = btnAtual
+                        document.getElementById(`fonte${indice+1}`).classList.add('color-on')
+                        document.getElementById(`imgFont${indice+1}`).setAttribute('src', `img/fonte${indice+1}-on.png`)
+                        document.getElementById(`fonte${indice+1}`).classList.remove('color-off')
                     }
                 }
                 else{
-                    console.log('removendo do indice ',indice+1)
-                    document.querySelector(`[data-btn="${indice+1}"]`).classList.remove('themeColor-active')
+                    document.getElementById(`imgFont${indice+1}`).setAttribute('src', `img/fonte${indice+1}.png`)
+                    document.getElementById(`fonte${indice+1}`).classList.remove('color-on')
+                    document.getElementById(`fonte${indice+1}`).classList.add('color-off')
                 }
             })
         })
     })
+    let atualColorBtn
+    const colorRadio = document.getElementsByName('colorChange')
+    radioButtons.colorBtn = colorRadio
+    colorRadio.forEach((btnFonts)=>{
+        btnFonts.addEventListener('click', ()=>{
+            colorRadio.forEach((btnAtual, indice) =>{
+                if (btnAtual.checked){
+                    if (btnAtual != atualColorBtn){
+                        atualColorBtn = btnAtual
+                        document.getElementById(`imgColor${indice+1}`).classList.remove('hidden')
+                    }
+                }
+                else{
+                    document.getElementById(`imgColor${indice+1}`).classList.add('hidden')
+                }
+            })
+        })
+    })
+    document.getElementById('pomodoroInput').defaultValue = 25;
+    document.getElementById('shortBrInput').defaultValue = 5;
+    document.getElementById('longBrInput').defaultValue = 15;
     document.getElementById('btnStart').addEventListener('click', start)
     document.getElementById('btnPause').addEventListener('click', pause)
+    document.getElementById('configBtn').addEventListener('click', config)
+    document.getElementById('closeIcon').addEventListener('click', closeConfig)
+    document.getElementById('applyConfigs').addEventListener('click', aplicarConfigs)
 }
-let interval = ''
+function clearIntervalo(intervalo, statusAnterior){
+    intervaloCheck = false
+    clearInterval(intervalo)
+    if (statusAnterior == 0){
+        if (timers.shortBreakControl < timers.shortBreakTimes){
+            document.getElementById('btn2').click()
+            document.getElementById('btnStart').click()
+            timers.shortBreakControl++
+        }
+        else {
+            document.getElementById('btn3').click()
+            document.getElementById('btnStart').click()
+            timers.shortBreakControl = 0
+        }
+    }
+    else {
+        document.getElementById('btn1').click()
+        document.getElementById('btnStart').click()
+    }
+
+}
+let intervaloCheck = false
+let strokePerMin
 function start(){
+    document.getElementById('btnStart').classList.add('hidden')
+    document.getElementById('btnPause').classList.remove('hidden')
     let btnChecked
-    let status
-    btns.forEach((btnAtual, indice)=> {
+    radioButtons.optionBtn.forEach((btnAtual, indice)=> {
         if (btnAtual.checked){
             btnChecked = indice
         }
     })
-    if (timers.atualTimer.minutos == timers.pomodoro || timers.atualTimer.minutos == timers.shortBreak || timers.atualTimer.minutos == timers.longBreak){
+    if (timers.atualTimer.minutos == 0 && timers.atualTimer.segundos == 0){
         if (btnChecked == 0) {
             timers.atualTimer.minutos = timers.pomodoro
+            document.getElementById('circle').style.strokeDashoffset = 0
         }
         else if (btnChecked == 1) {
             timers.atualTimer.minutos = timers.shortBreak
+            document.getElementById('circle').style.strokeDashoffset = 0
         }
         else {
             timers.atualTimer.minutos = timers.longBreak
+            document.getElementById('circle').style.strokeDashoffset = 0
         }
+        strokePerMin = properties.strokeDashArray/(timers.atualTimer.minutos == 0 ? 2 : timers.atualTimer.minutos)
     }
-    const strokePerMin = properties.strokeDashArray/timers.atualTimer.minutos
     let strokeIncrement = 0
-    timers.atualTimer.segundos = 0
     let lastMinute = 0
-    interval = setInterval(()=>{
+    const interval = setInterval(()=>{
+        intervaloCheck = true
         if (timers.atualTimer.minutos == 0 && timers.atualTimer.segundos == 0){
-            clearInterval(interval)
+            clearIntervalo(interval, btnChecked);
         }
-        if (timers.atualTimer.segundos == 0){
+        else if (timers.atualTimer.segundos == 0){
             timers.atualTimer.minutos -= 1
             timers.atualTimer.segundos = 59
         }
@@ -93,7 +173,80 @@ function start(){
         }
         document.getElementById('timing').innerText = `${timers.atualTimer.minutos}:${timers.atualTimer.segundos < 10 ? '0'+timers.atualTimer.segundos : timers.atualTimer.segundos}`
     }, 250)
+    window.getInterval = interval
 }
 function pause(){
-
+    intervaloCheck = false
+    clearInterval(window.getInterval)
+    document.getElementById('btnStart').classList.remove('hidden')
+    document.getElementById('btnPause').classList.add('hidden')
+}
+function config(){
+    document.getElementById('config').classList.add('enter-animation')
+}
+function closeConfig(){
+    document.getElementById('config').classList.add('goout-animation')
+    setTimeout(()=>{
+        document.getElementById('config').classList.remove('goout-animation')
+    },350)
+    document.getElementById('config').classList.remove('enter-animation')
+}
+function aplicarConfigs(){
+    timers.pomodoro = document.getElementById('pomodoroInput').value == '' ? 25 : document.getElementById('pomodoroInput').value
+    timers.shortBreak = document.getElementById('shortBrInput').value == '' ? 5 : document.getElementById('shortBrInput').value
+    timers.longBreak = document.getElementById('longBrInput').value == '' ? 15 : document.getElementById('longBrInput').value
+    if (intervaloCheck === false){
+        timers.atualTimer.minutos = 0
+        timers.atualTimer.segundos = 0
+        document.getElementById('timing').innerText = `${timers.pomodoro}:00`
+        document.getElementById('circle').style.strokeDashoffset = 0
+    }
+    const fontsBtn = radioButtons.fontsBtn
+    let fontChecked = null
+    let lastFont
+    fontsBtn.forEach((btn, indice)=>{
+        if (btn.checked){  
+            if (document.getElementsByClassName(`fontSelect${indice+1}`).length == 0){
+                fontChecked = indice
+            }
+        }
+        else {
+            if (document.getElementsByClassName(`fontSelect${indice+1}`).length != 0){
+                lastFont = indice
+            }
+        }
+    })
+    if (fontChecked != null){
+        const fontItems = Object.values(document.getElementsByClassName(`fontSelect${lastFont+1}`))
+        fontItems.forEach((e)=>{
+            e.classList.remove(`fontSelect${lastFont+1}`)
+            e.classList.add(`fontSelect${fontChecked+1}`)
+        })
+    }
+    const colorBtn = radioButtons.colorBtn
+    let colorChecked = null
+    colorBtn.forEach((btn, indice)=>{
+        if (btn.checked){  
+            colorChecked = indice
+        }
+    })
+    if (colorChecked != null){
+        if (colorChecked == 0){
+            properties.colorTheme = 'rgb(247,113,113)'
+        }
+        else if (colorChecked == 1){
+            properties.colorTheme = 'rgb(112,241,249)'
+        }
+        else if (colorChecked == 2){
+            properties.colorTheme = '#d781f9'
+        }
+        radioButtons.optionBtn.forEach((btnAtual, indice) =>{
+            if (btnAtual.checked){
+                document.querySelector(`[data-btn="${indice+1}"]`).style = `background-color:${properties.colorTheme};`
+            }
+        })
+        circle.setAttribute('stroke', properties.colorTheme)
+        document.getElementById('applyConfigs').style = `background-color:${properties.colorTheme};`
+    }
+    document.getElementById('closeIcon').click()
 }
