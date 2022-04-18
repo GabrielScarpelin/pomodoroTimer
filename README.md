@@ -7,4 +7,5 @@ Projeto onde consegui aprender muitas coisas!
 Projeto para treinar coisas que estou aprendendo no curso da COD3R!
 <br>
 LINK DE ACESSO: https://gabrielscarpelin.github.io/pomodoroTimer/
+<br>
 DESIGN/CHALLENGE BY: FrontEnd Mentor
