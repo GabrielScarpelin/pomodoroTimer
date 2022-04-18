@@ -5,4 +5,6 @@ Projeto onde consegui aprender muitas coisas!
 - Ajuste de tempo de acordo com o seu ideal para o pomodoro
 ### Feito totalmente para aprendizagem
 Projeto para treinar coisas que estou aprendendo no curso da COD3R!
+<br>
+LINK DE ACESSO: https://gabrielscarpelin.github.io/pomodoroTimer/
 DESIGN/CHALLENGE BY: FrontEnd Mentor
