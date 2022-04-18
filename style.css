@@ -271,3 +271,8 @@ body{
         left: 50%;
     }
 }
+@media (max-width: 1000px){
+    .pomo-config{
+        width: 81vw;
+    }
+}
