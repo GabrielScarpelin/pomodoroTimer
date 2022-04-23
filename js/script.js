@@ -21,7 +21,7 @@ const properties = {
 const radioButtons = {
 }
 window.onload = ()=>{
-    let atualBtnChecked = 0;
+    let atualBtnChecked = document.getElementById('btn1');
     circle = document.getElementById('circle')
     const alturaTela = window.innerHeight
     const larguraTela = window.innerWidth
@@ -38,7 +38,7 @@ window.onload = ()=>{
     const btns = document.getElementsByName('radio1')
     radioButtons.optionBtn = btns
     btns.forEach((btn)=>{
-        btn.addEventListener('click', (btn)=>{
+        btn.addEventListener('click', ()=>{
             if (intervaloCheck == false){
                 btns.forEach((btnAtual, indice) => {
                     if (btnAtual.checked) {
@@ -51,6 +51,15 @@ window.onload = ()=>{
                     else {
                         document.querySelector(`[data-btn="${indice + 1}"]`).style = ''
                         document.querySelector(`[data-btn="${indice + 1}"]`).classList.remove('activeOption')
+                    }
+                })
+            }
+            else{
+                btns.forEach((btnAtual) =>{
+                    if (btnAtual.checked){
+                        if (btnAtual != atualBtnChecked){
+                            atualBtnChecked.click()
+                        }
                     }
                 })
             }
@@ -128,6 +137,7 @@ function clearIntervalo(intervalo, statusAnterior){
 }
 let intervaloCheck = false
 let strokePerMin
+let lastBtnChecked = null
 function start(){
     document.getElementById('btnStart').classList.add('hidden')
     document.getElementById('btnPause').classList.remove('hidden')
@@ -137,7 +147,7 @@ function start(){
             btnChecked = indice
         }
     })
-    if (timers.atualTimer.minutos == 0 && timers.atualTimer.segundos == 0){
+    if ((timers.atualTimer.minutos == 0 && timers.atualTimer.segundos == 0) || lastBtnChecked != btnChecked){
         if (btnChecked == 0) {
             timers.atualTimer.minutos = timers.pomodoro
             document.getElementById('circle').style.strokeDashoffset = 0
@@ -151,6 +161,8 @@ function start(){
             document.getElementById('circle').style.strokeDashoffset = 0
         }
         strokePerMin = properties.strokeDashArray/(timers.atualTimer.minutos == 0 ? 2 : timers.atualTimer.minutos)
+        lastBtnChecked = btnChecked
+        timers.atualTimer.segundos = 0
     }
     let strokeIncrement = 0
     let lastMinute = 0
@@ -172,7 +184,7 @@ function start(){
             document.getElementById('circle').style.strokeDashoffset = strokeIncrement
         }
         document.getElementById('timing').innerText = `${timers.atualTimer.minutos}:${timers.atualTimer.segundos < 10 ? '0'+timers.atualTimer.segundos : timers.atualTimer.segundos}`
-    }, 250)
+    }, 1000)
     window.getInterval = interval
 }
 function pause(){
@@ -198,7 +210,22 @@ function aplicarConfigs(){
     if (intervaloCheck === false){
         timers.atualTimer.minutos = 0
         timers.atualTimer.segundos = 0
-        document.getElementById('timing').innerText = `${timers.pomodoro}:00`
+        radioButtons.optionBtn.forEach((btn, indice)=>{
+            const tempoTitle = document.getElementById('timing')
+            let indiceChecked = null
+            if (btn.checked){
+                indiceChecked = indice
+            }
+            if (indiceChecked === 0){
+                tempoTitle.innerText = `${timers.pomodoro}:00`
+            }
+            else if (indiceChecked === 1){
+                tempoTitle.innerText = `${timers.shortBreak}:00`
+            }
+            else if (indiceChecked === 2) {
+                tempoTitle.innerText = `${timers.longBreak}:00`
+            }
+        })
         document.getElementById('circle').style.strokeDashoffset = 0
     }
     const fontsBtn = radioButtons.fontsBtn
